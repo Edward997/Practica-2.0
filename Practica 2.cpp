@@ -3,23 +3,40 @@
 
 using namespace std;
 
-int i,mayor=INT_MIN,a[10];
+struct direccion{
+	char call[20];
+	int tel;
+	char ciudad[20];
+};
 
-int main(){
-	cout<< "Ingrese 10 numeros para determinar el mayor: " << endl;
-	for(int i=0; i<10; i++){
-		cout<<"Introduzca un numero: " <<endl;
-		cin>> a[i];	                                
+struct empleado{
+	char nombre[20];
+	char genero[20];
+	int edad;
+	struct direccion dir;
+};
+
+int main(int argc, char** argv) {
+	struct empleado E1[5];
+	struct empleado *apuntador;
+	
+	apuntador=&E1[0];
+	
+	for(int i=0; i<5; i++){
+		
+		cout<<"nombre: ";
+		cin.getline(E1[i].nombre,20);
+		cout<<"edad: ";
+		cin>>E1[i].edad;
+		cout<<"calle: ";
+		fflush(stdin);
+		cin.getline(E1[i].dir.call,20);
 	}
 	
-	for(int *puntero=&a[0]; puntero<= &a[9]; puntero++){
-		if (mayor<*puntero){
-			mayor=*puntero;
-		}
-	}
-	
-	cout << "El numero mayor ingresado es " <<mayor<<endl;
-  	system("pause");
+	cout<<endl<<"nombre guardado: " <<apuntador->nombre;
+	cout<<endl<<"edad guardada: " <<apuntador->edad;
+	cout<<endl<<"genero guardado: " <<apuntador->genero;
+	cout<<endl<<"calle guardada: " <<apuntador->dir.call;
 	
 	return 0;
 }
